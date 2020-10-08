@@ -13,7 +13,7 @@ public class ClientTest {
 			
 			String SQL = "SELECT VERSION ();";
 			 String result =  (String)session.createNativeQuery(SQL).getSingleResult();
-			 System.out.println("Mysql Version is :::");
+			 System.out.println("Mysql Version is ::");
 			 System.out.println(result);
 			
 		} catch (Exception e) {
