@@ -13,11 +13,14 @@ public class ClientTest2 {
 
 		try (Session session = HibernateUtil.getSessionFactory().openSession()) {
 
-			Employee employee = getEmployee();
+			//Employee employee = getEmployee();
 			session.beginTransaction();
-			//session.persist(employee);  //persist method is a void method it will not return primary key
-			 Integer id  = (Integer)session.save(employee);  //save method methods return type is Serializable and it returns primary key
+			session.persist(getEmployee1());  //persist method is a void method it will not return primary key
+			 Integer id  = (Integer)session.save(getEmployee2());  //save method methods return type is Serializable and it returns primary key
 			 System.out.println("Employee is Created with: "+id);
+			 
+			 session.saveOrUpdate(getEmployee3());
+			 
 			session.getTransaction().commit();
 
 		} catch (Exception e) {
@@ -25,15 +28,34 @@ public class ClientTest2 {
 		}
 	}
 
-	private static Employee getEmployee() {
+	private static Employee getEmployee1() {
 
 		Employee employee = new Employee();
-		employee.setEmployeeName("Pramod Pawar");
-		employee.setEmail("pramod@gmail.com");
+		employee.setEmployeeName("abc");
+		employee.setEmail("abc@gmail.com");
 		employee.setSalary(50000.00);
 		employee.setDoj(new Date());
 		return employee;
+	}
+	
+	private static Employee getEmployee2() {
 
+		Employee employee = new Employee();
+		employee.setEmployeeName("pqr");
+		employee.setEmail("pqr@gmail.com");
+		employee.setSalary(50000.00);
+		employee.setDoj(new Date());
+		return employee;
+	}
+	
+	private static Employee getEmployee3() {
+
+		Employee employee = new Employee();
+		employee.setEmployeeName("xyz");
+		employee.setEmail("xyz@gmail.com");
+		employee.setSalary(50000.00);
+		employee.setDoj(new Date());
+		return employee;
 	}
 
 }
